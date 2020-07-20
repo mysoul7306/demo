@@ -1,0 +1,16 @@
+server:
+  port: 80
+
+jasypt:
+  encryptor:
+  bean: jasyptStringEncryptor
+
+spring:
+  datasource:
+    sql-script-encoding: UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(EkLY24fwg4QJ5v1lDBhpC0IoY24c9oFWN5CyfgNLfGHJpnnz4hy50gMkH/snoL6gPiANJzgcPIg/DWwRB/a+zb0IrmAlnKHWpxzMVGI9Yqw=)
+    username: ENC(uWTB0Y3ZCKt/8a+pageC2w==)
+    password: ENC(lU9wFQP8JLL2AiPyVhcDF1v+f4ywAnZu)
+
+serverTimezone: KST
