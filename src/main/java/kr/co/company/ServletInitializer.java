@@ -1,4 +1,4 @@
-package kr.co.company.demo;
+package kr.co.company;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
