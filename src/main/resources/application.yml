@@ -1,6 +1,10 @@
 server:
   port: 80
 
+logging:
+  level:
+    org.hibernate: info
+
 jasypt:
   encryptor:
   bean: jasyptStringEncryptor
@@ -12,5 +16,12 @@ spring:
     url: ENC(EkLY24fwg4QJ5v1lDBhpC0IoY24c9oFWN5CyfgNLfGHJpnnz4hy50gMkH/snoL6gPiANJzgcPIg/DWwRB/a+zb0IrmAlnKHWpxzMVGI9Yqw=)
     username: ENC(uWTB0Y3ZCKt/8a+pageC2w==)
     password: ENC(lU9wFQP8JLL2AiPyVhcDF1v+f4ywAnZu)
+  jpa:
+    generate-ddl: false
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 
-serverTimezone: KST
+serverTimezone: Asia/Seoul

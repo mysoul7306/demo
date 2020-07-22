@@ -1,4 +1,4 @@
-package kr.co.company.demo.utilities;
+package kr.co.company.utilities;
 
 
 import org.jasypt.encryption.StringEncryptor;
