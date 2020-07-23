@@ -1,13 +1,19 @@
 package kr.co.company.demo;
 
+import com.querydsl.core.BooleanBuilder;
+import kr.co.company.demo.board.vo.res.QBoardDefaultResVO;
 import kr.co.company.persistence.board.BoardRepository;
 import kr.co.company.demo.board.vo.res.BoardDefaultResVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RunWith(SpringRunner.class)
@@ -77,5 +83,34 @@ public class BoardRepositoryTests {
 	public void testFindBoardDefaultResVOByWriterEqualsAndContentsContains() {
 		boardRepo.findBoardDefaultResVOByWriterEqualsAndContentsContains("Administrator", "1")
 				.forEach(board -> System.out.println(board));
+	}
+
+	@Test
+	public void testPredicate() {
+
+		String type = "T";
+		String keyword = "1";
+
+		BooleanBuilder booleanBuilder = new BooleanBuilder();
+
+		QBoardDefaultResVO boardDefaultResVO = QBoardDefaultResVO.boardDefaultResVO;
+
+		if (type.equals("T")) {
+			booleanBuilder.and(boardDefaultResVO.title.like("%" + keyword + "%"));
+		}
+		booleanBuilder.and(boardDefaultResVO.boardSeq.gt(0L));
+
+		Pageable pageable = PageRequest.of(0, 10);
+
+		Page<BoardDefaultResVO> result = boardRepo.findAll(booleanBuilder, pageable);
+
+		System.out.println("PAGE SIZE : " + result.getSize());
+		System.out.println("TOTAL PAGES : " + result.getTotalPages());
+		System.out.println("TOTAL COUNT : " + result.getTotalElements());
+		System.out.println("NEXT : " + result.nextPageable());
+
+		List<BoardDefaultResVO> list = result.getContent();
+
+		list.forEach(board -> System.out.println(board));
 	}
 }
