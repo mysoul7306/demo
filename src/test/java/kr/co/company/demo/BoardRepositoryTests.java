@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -87,7 +88,6 @@ public class BoardRepositoryTests {
 
 	@Test
 	public void testPredicate() {
-
 		String type = "T";
 		String keyword = "1";
 
@@ -103,6 +103,22 @@ public class BoardRepositoryTests {
 		Pageable pageable = PageRequest.of(0, 10);
 
 		Page<BoardDefaultResVO> result = boardRepo.findAll(booleanBuilder, pageable);
+
+		System.out.println("PAGE SIZE : " + result.getSize());
+		System.out.println("TOTAL PAGES : " + result.getTotalPages());
+		System.out.println("TOTAL COUNT : " + result.getTotalElements());
+		System.out.println("NEXT : " + result.nextPageable());
+
+		List<BoardDefaultResVO> list = result.getContent();
+
+		list.forEach(board -> System.out.println(board));
+	}
+
+	@Test
+	public void testBoardSeqPagingSort() {
+		// Properties 값은 VO 값을 따라감
+		Pageable paging = PageRequest.of(0, 10, Sort.Direction.ASC, "boardSeq");
+		Page<BoardDefaultResVO> result = boardRepo.findBoardDefaultResVOByBoardSeqGreaterThan(0L, paging);
 
 		System.out.println("PAGE SIZE : " + result.getSize());
 		System.out.println("TOTAL PAGES : " + result.getTotalPages());

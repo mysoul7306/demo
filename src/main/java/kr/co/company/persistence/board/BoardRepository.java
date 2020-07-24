@@ -1,6 +1,8 @@
 package kr.co.company.persistence.board;
 
 import kr.co.company.demo.board.vo.res.BoardDefaultResVO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
@@ -12,4 +14,5 @@ public interface BoardRepository extends CrudRepository<BoardDefaultResVO, Long>
 	List<BoardDefaultResVO> findBoardDefaultResVOByTitle(String title);
 	List<BoardDefaultResVO> findBoardDefaultResVOSByContentsContains(String contents);
 	Collection<BoardDefaultResVO> findBoardDefaultResVOByWriterEqualsAndContentsContains(String writer, String contents);
+	Page<BoardDefaultResVO> findBoardDefaultResVOByBoardSeqGreaterThan(Long boardSeq, Pageable paging);
 }

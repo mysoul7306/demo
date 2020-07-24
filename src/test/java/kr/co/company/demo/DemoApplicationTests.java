@@ -23,7 +23,7 @@ class DemoApplicationTests {
         pbeEnc.setPassword("pk4s_Mj$Duv_1jcQ");
 
         // 암호화 키
-        String enc = pbeEnc.encrypt("grkim1!");
+        String enc = pbeEnc.encrypt("rmsfhr12!@");
         System.out.println("enc = " + enc);
 
         // 복호화 키
