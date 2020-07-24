@@ -32,3 +32,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### SQL ###
+*.sql
+
+### Temporary directory ###
+.temp_dir/
