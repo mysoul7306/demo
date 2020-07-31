@@ -13,7 +13,7 @@ spring:
   datasource:
     sql-script-encoding: UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(EkLY24fwg4QJ5v1lDBhpC0IoY24c9oFWN5CyfgNLfGHJpnnz4hy50gMkH/snoL6gPiANJzgcPIg/DWwRB/a+zb0IrmAlnKHWpxzMVGI9Yqw=)
+    url: jdbc:mysql://rokroot.asuscomm.com:930/test_db?zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Seoul
     username: ENC(uWTB0Y3ZCKt/8a+pageC2w==)
     password: ENC(M+xfl8bkMd2vjR4Ef8SwppL3gozoLArW)
 
@@ -24,5 +24,3 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
-serverTimezone: Asia/Seoul

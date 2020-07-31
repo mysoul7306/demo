@@ -24,7 +24,7 @@ public class BoardRepositoryTests {
 	private BoardRepository boardRepo;
 
 	@Test
-	public void inspect() {
+	public void testInspect() {
 		// 실제 객체 이름
 		Class<?> clazz = boardRepo.getClass();
 		System.out.println(clazz.getName());
@@ -43,7 +43,6 @@ public class BoardRepositoryTests {
 	public void testCreate() {
 		BoardDefaultResVO boardDefaultResVO = new BoardDefaultResVO();
 		boardDefaultResVO.setTitle("임태환");
-		boardDefaultResVO.setWriter("김근록");
 		boardDefaultResVO.setContents("화이팅");
 
 		boardRepo.save(boardDefaultResVO);
@@ -61,7 +60,6 @@ public class BoardRepositoryTests {
 		for (int i = 1; i <= 200; i++) {
 			BoardDefaultResVO boardDefaultResVO = new BoardDefaultResVO();
 			boardDefaultResVO.setTitle("제목" + i);
-			boardDefaultResVO.setWriter("Administrator");
 			boardDefaultResVO.setContents("Contents" + i);
 
 			boardRepo.save(boardDefaultResVO);
@@ -70,20 +68,30 @@ public class BoardRepositoryTests {
 
 	@Test
 	public void testFindByTitle() {
-		boardRepo.findBoardDefaultResVOByTitle("제목1")
+		boardRepo.findByTitle("제목1")
 				.forEach(board -> System.out.println(board));
 	}
 
 	@Test
 	public void testFindBoardDefaultResVOSByContentsContains() {
-		boardRepo.findBoardDefaultResVOSByContentsContains("1")
+		boardRepo.findByContentsContains("1")
 				.forEach(board -> System.out.println(board));
 	}
 
 	@Test
-	public void testFindBoardDefaultResVOByWriterEqualsAndContentsContains() {
-		boardRepo.findBoardDefaultResVOByWriterEqualsAndContentsContains("Administrator", "1")
-				.forEach(board -> System.out.println(board));
+	public void testBoardSeqPagingSort() {
+		// Properties 값은 VO 값을 따라감
+		Pageable paging = PageRequest.of(0, 10, Sort.Direction.ASC, "boardSeq");
+		Page<BoardDefaultResVO> result = boardRepo.findByBoardSeqGreaterThan(0L, paging);
+
+		System.out.println("PAGE SIZE : " + result.getSize());
+		System.out.println("TOTAL PAGES : " + result.getTotalPages());
+		System.out.println("TOTAL COUNT : " + result.getTotalElements());
+		System.out.println("NEXT : " + result.nextPageable());
+
+		List<BoardDefaultResVO> list = result.getContent();
+
+		list.forEach(board -> System.out.println(board));
 	}
 
 	@Test
@@ -103,22 +111,6 @@ public class BoardRepositoryTests {
 		Pageable pageable = PageRequest.of(0, 10);
 
 		Page<BoardDefaultResVO> result = boardRepo.findAll(booleanBuilder, pageable);
-
-		System.out.println("PAGE SIZE : " + result.getSize());
-		System.out.println("TOTAL PAGES : " + result.getTotalPages());
-		System.out.println("TOTAL COUNT : " + result.getTotalElements());
-		System.out.println("NEXT : " + result.nextPageable());
-
-		List<BoardDefaultResVO> list = result.getContent();
-
-		list.forEach(board -> System.out.println(board));
-	}
-
-	@Test
-	public void testBoardSeqPagingSort() {
-		// Properties 값은 VO 값을 따라감
-		Pageable paging = PageRequest.of(0, 10, Sort.Direction.ASC, "boardSeq");
-		Page<BoardDefaultResVO> result = boardRepo.findBoardDefaultResVOByBoardSeqGreaterThan(0L, paging);
 
 		System.out.println("PAGE SIZE : " + result.getSize());
 		System.out.println("TOTAL PAGES : " + result.getTotalPages());
