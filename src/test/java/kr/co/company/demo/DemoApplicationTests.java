@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 class DemoApplicationTests {
 
     @Test
@@ -23,7 +22,7 @@ class DemoApplicationTests {
         pbeEnc.setPassword("pk4s_Mj$Duv_1jcQ");
 
         // 암호화 키
-        String enc = pbeEnc.encrypt("grkim1!");
+        String enc = pbeEnc.encrypt("");
         System.out.println("enc = " + enc);
 
         // 복호화 키

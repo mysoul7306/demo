@@ -41,7 +41,7 @@ public class BoardRepositoryTests {
 //	@Transactional
 	public void testCreate() {
 		BoardDefaultResVO boardDefaultResVO = new BoardDefaultResVO();
-		boardDefaultResVO.setTitle("임태환");
+		boardDefaultResVO.setTitle("Spring Boot");
 		boardDefaultResVO.setWriter("김근록");
 		boardDefaultResVO.setContents("화이팅");
 

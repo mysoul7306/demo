@@ -13,9 +13,9 @@ spring:
   datasource:
     sql-script-encoding: UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(EkLY24fwg4QJ5v1lDBhpC0IoY24c9oFWN5CyfgNLfGHJpnnz4hy50gMkH/snoL6gPiANJzgcPIg/DWwRB/a+zb0IrmAlnKHWpxzMVGI9Yqw=)
-    username: ENC(uWTB0Y3ZCKt/8a+pageC2w==)
-    password: ENC(jnTI78bYKe/+uFjsAtPnpw==)
+    url: ENC(0eWswqteVmFlYAAZy2nhW3OY9tsKyrmfIHkyf/ApbgUASUfbKudFKMX0Pg4dnDOwfKQBO7AmgCjz728GORzU7JD315obEnAGs353o5CbHoV0V9nzxKhLW8qnaByKWjDDriyWeZYSAF0yXUcuWWxM0w==)
+    username: ENC(+9Nw3I61uDxJYl7mVdVzqg==)
+    password: ENC(3dKqgYYH8OS44BKhIGNxcnQfUE9o1qAr)
 
   jpa:
     generate-ddl: false
